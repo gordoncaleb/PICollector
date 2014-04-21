@@ -1,0 +1,531 @@
+<!doctype html>
+<!-- To use this page:
+	1.  Find all instance of the string "PageTitleHere" and replace it with the page title you want.
+	2.  Find all instance of the string "PageURLHere" and replace it with the page's URL.
+	3.  Replace the string "BannerImageURL" with the URL of the page's banner image.
+	4.  Delete these instructions.
+--->
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" href="/images/homepage/apple-touch-icon.png">
+	<link rel="stylesheet" type="text/css" href="/css/960grid/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/css/960grid/960.css" />
+	<link rel="stylesheet" type="text/css" href="/css/features.css" />
+	<link rel="stylesheet" type="text/css" href="/css/jquery-ui/jquery-ui-1.8.16.custom.css" />
+	<link rel="stylesheet" type="text/css" href="/css/fancybox/jquery.fancybox-1.3.4.css" />
+	<link rel="stylesheet" type="text/css" href="/css/ecu.css" />
+	<link rel="stylesheet" type="text/css" href="/css/secondLevel/styles.css" />
+	<title>East Carolina University - Directory</title>
+	<style type="text/css">
+/* Styles specific to email_phone.cfm */
+.explanation {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+#quicklinks {
+	margin-left: 1em
+	margin-bottom: 1em;
+}
+#quicklinks li {
+	list-style: circle;
+	list-style-position: inside;
+}
+.peopleresults {
+	width: 100%;
+	margin-top: 2em;
+}
+.peopleresults td {
+	border: none;
+	padding-bottom: 0.4em;
+	padding-left: 0.8em;
+}
+.peopleresults th {
+	border: none;
+	font-weight: bold;
+	color: #000000;
+	padding-bottom: 0.4em;
+	padding-left: 0.8em;
+}
+.even {
+	background-color: #ffffff;
+}
+.odd {
+	background-color: #e0e0e0;
+}
+/* Styles specific to department lookup */
+ul.menuList {
+	background: #f0f0f0;
+	margin-top: 15px;
+}
+ul.menuList li {
+	display: inline;
+	padding-left: 2px;
+}
+ul.menuList li a {
+	font-weight: bold;
+}
+ul.menuList li.browseChoice a {
+	background-color: #000;
+	color: #fff;
+}
+
+/* Styles for departmental phone results */
+table.departmentresults {
+	margin-left: 1em;
+	width: 700px;
+}
+table.departmentresults th {
+	padding-left: 5px;
+	padding-top: 15px;
+	padding-bottom: 5px;
+	font-weight: bold;
+	font-size: 12px;
+}
+tr.deptRow td {
+	background: #cccccc;
+	padding: 5px 0 5px 5px;
+	font-size: 12px;
+}
+tr.subDeptRow td {
+	background: #ffffff;
+	padding-top: 5px;
+	padding-bottom: 2px;
+	padding-left: 20px;
+	font-size: 12px;
+}
+tr.subDeptRow td.pn {
+	text-align: right;
+	padding-right: 5px;
+	padding-left: 0px;
+	width: 150px;
+}
+.searchinput {
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+tr.alternate td {
+	background-color: #eff2ff;
+}
+h2 {
+	font-size: 120%;
+	font-weight: bold;
+	margin:0.3em 0;
+}
+.pdfList {
+	list-style-type: none;
+}
+.completeDirectory {
+	font-size: 105%;
+	font-weight: bold;
+}
+/* Styles for Alphabet Listings on PDFs Tab*/
+.author_alphabetic {
+	text-align:center;
+}
+.author_alphabetic ul {
+	list-style-type: none;
+}
+.author_alphabetic li {
+	float:left;
+	margin:3px 3px 0 0;
+}
+.author_alphabetic a {
+	border: 1px solid #955FCE;
+	text-decoration:none;
+	font-size:1.5em;
+	float:left;
+	display:block;
+	color:#592A8A;
+	padding: 0.3em;
+	margin: 0.1em;
+}
+.author_alphabetic a:hover {
+	background:rgb(224, 232, 158);
+	z-index:100;
+	color:#592A8A;
+	background: #C9ADE6;
+	border:1px solid #8A4fC9;
+}
+</style>
+</head>
+<body>
+<div id="headerWrap">
+	<div id="header">
+		<div id="search">
+			<ul id="searchMenu">
+				<li class="searchMenuItem"><a href="http://www.ecu.edu/ecu/directory.php">Find People</a></li>
+				<li class="searchMenuItem"><a href="http://www.ecu.edu/campusmaps/">Campus Map</a></li>
+				<li class="searchMenuItem"><a href="/quicklinks/" title="Quick Links">Quick Links</a></li>
+				<li class="searchMenuItem"><a href="http://onestop.ecu.edu">OneStop</a></li>
+				<li class="searchMenuItem"><a href="/ecu/atoz.php">A-Z</a></li>
+			</ul>
+			<div class="clear"></div>
+			<div id="searchFormWrapWrap">
+			<div id="searchFormWrap">
+			<form method="post" action="/scripts/search.php" id="searchForm">
+				<label for="searchtypeselect" class="accessible">Search</label>
+				<select name="searchtype" id="searchtypeselect">
+					<option value="ws">Web Site</option>
+					<option value="ps">People</option>
+					<option value="ds">Departments</option>
+				</select>
+				<input type="text" name="searchterm" />
+				<input type="image" src="/images/go_search.png" width="22" height="22" alt="GO" />
+			</form>
+			</div>
+			</div>
+		</div>
+		<a href='/'><img src="/images/ecu_wordmark.png" width="396" height="57" alt="East Carolina University. Tomorrow starts here.&reg;" id="wordmark" /></a>
+
+	</div>
+</div> <!-- headerWrap -->
+
+<div id="primarynavWrap">
+		<div id="primarynav">
+			<ul class="primaryMenu">
+				<li><a href="/ecu/admissions.php">Admissions</a></li>
+				<li><a href="/ecu/students.php">Students</a></li>
+				<li><a href="/ecu/parents.php">Parents</a></li>
+				<li><a href="/ecu/facultystaff.php">Faculty &amp; Staff</a></li>
+				<li><a href="/ecu/alumni.php">Alumni</a></li>
+				<li><a href="/ecu/visitors.php">Visitors</a></li>
+				<li><a href="/ecu/patients.php">Patients</a></li>
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+</div>
+
+<div class="clear"></div>
+
+<div id="secondarynavWrap">
+	<div id="secondarynav">
+		<ul class="secondaryMenu">
+			<li><a href="/ecu/about.php">About ECU</a></li>
+			<li><a href="/ecu/academics.php">Academics</a></li>
+			<li><a href="/ecu/research.php">Research</a></li>
+			<li><a href="/ecu/administration.php">Administration</a></li>
+			<li><a href="/ecu/collegesschools.php">Colleges &amp; Schools</a></li>
+			<li><a href="/ecu/healthsciences.php">Health Sciences</a></li>
+			<li><a href="/ecu/libraries.php">Libraries</a></li>
+			<li><a href="/ecu/athletics.php">Athletics</a></li>
+			<li><a href="/ecu/arts.php">Arts</a></li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+</div><!-- secondarynavWrap -->
+<div id="content">
+	<div class="bannerImage"><img height="225" width="960" alt="Students at East Carolina University" src="/images/secondLevel/banners/students_banner.jpg" /></div>
+
+	<div class="pageHeading">
+		<h1>Directory</h1>
+<div style="display: none">
+		<div style="width: auto; height: auto; overflow: auto; position: relative;">
+			<div id="emailFormDisplay">
+				Tell a friend about this page.<br/>
+				All fields required.<br/>
+				Can be sent to only <strong>one</strong> email address at a time.
+				<form id="emailForm" action="/scripts/emailLink.cfm" method="post">
+					<input type="hidden" name="newForm" value="true" />
+					<div class="formRow"><label for="emailTo">To:</label><input type="text" id="emailTo" name="emailTo" maxlength="60" size="40" /></div>
+					<div class="formRow"><label for="eamilFrom">Your email:</label><input type="text" id="emailFrom" name="emailFrom" maxlength="60" size="40" /></div>
+					<div class="formRow"><label for="emailFromName">Your name:</label><input type="text" id="emailFromName" name="emailFromName" maxlength="30" size="40" /></div>
+				</form>
+				<div class="formRow"><button id="submitEmail"/>Submit</button> <button id="cancelEmail"/>Cancel</button></div>
+			</div>
+		</div>
+</div>
+		<div class="plusShare"> <strong>Share</strong> <a class="iframe myLinks">MyLinks</a> <a id="inline" href="#emailFormDisplay" class="emailLink"><img width="20" height="13" alt="Mail Icon" src="/images/secondLevel/mail.png"></a> <a href='http://www.facebook.com/share.php?u=http://www.ecu.edu/ecu/directory.php'><img width="15" height="15" alt="Facebook Icon" src="/images/secondLevel/facebook.png"></a> <a href="http://twitter.com/?status=Directory%20-%20htp://www.ecu.edu/ecu/directory.php"><img width="15" height="15" alt="Twitter Icon" src="/images/secondLevel/twitter.png"></a> </div>
+
+	</div> <!-- End pageHeading -->
+
+	<hr/>
+	<div class="contentWrapper">
+		<div class="pageContentNoLeft">
+		<!-- Content Begins -->
+		<div class="explanation">To look up the e-mail address for a student or a member of our faculty or staff, choose from the options below. You may type all or part of the person's name. You may also call our campus operator at <b>252.328.6131</b> for phone information.</div>
+		<div id="formtabs">
+			<ul>
+				<li><a href="#tab-peoplesearch">People</a></li>
+				<li><a href="#tab-departmentsearch">Departments</a></li>
+				<li><a href="#tab-reversesearch">Reverse Lookup</a></li>
+				<li><a href="#tab-pdfs">PDFs</a></li>
+			</ul>
+			<div id="tab-peoplesearch">
+			<form action="/ecu/directory.php" method="get">
+	<fieldset>
+		<label for="lastnameinput">Person's Last Name</label>
+		<br />
+		<input class="searchinput" name="lastname" id="firstnameinput" type="text" size="40" value="s"  />
+		<br />
+		<label for="firstnameinput">Person's First Name</label>
+		<br />
+		<input class="searchinput" name="firstname" id="firstnameinput" type="text" size="40" value="j"  />
+		<br />
+		<br />
+		<input class="searchinput" type="radio" value="1" name="peoplefilter" checked="checked"/>
+		Faculty/Staff Only<br />
+		<input class="searchinput" type="radio" value="2" name="peoplefilter" />
+		Students Only<br />
+		<input class="searchinput" type="radio" value="3" name="peoplefilter" />
+		Both Faculty/Staff and Students<br />
+		<input type="hidden" name="type" value="people" />
+		<input type="submit" name="submit" value="Search" />
+	</fieldset>
+</form>
+
+
+	<table class="peopleresults">
+
+			<tbody itemscope itemtype="http://schema.org/Person"></tbody><tbody itemscope itemtype="http://schema.org/Person"></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jan Salstrom</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SALSTROMJ@ecu.edu">SALSTROMJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-744-5903">252-744-5903</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">733<a href="http://www.ecu.edu/campusmaps?building=PCMH"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Pitt County Memorial Hosp 164 TA</td></tr><tr><th class="odd">Department</th><td class="odd">ObGyn General ObGyn</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Janet Sanders</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SANDERSJ@ecu.edu">SANDERSJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-737-1906">252-737-1906</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">130<a href="http://www.ecu.edu/campusmaps?building=203"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Slay 246</td></tr><tr><th class="even">Department</th><td class="even">Technology Systems</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jonsi Sang</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SANGJ@ecu.edu">SANGJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-744-2507">252-744-2507</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">632<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Brody 3E142</td></tr><tr><th class="odd">Department</th><td class="odd">BSOM Pediatrics</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jacque Sauls</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SAULSJ@ecu.edu">SAULSJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-744-4676">252-744-4676</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">632<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">600 Moye Blvd. Vidant Suite 333</td></tr><tr><th class="even">Department</th><td class="even">Peds Hematology And Oncology</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jason Savage</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SAVAGEJ@ECU.EDU">SAVAGEJ@ECU.EDU</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-744-2182">252-744-2182</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">213<a href="http://www.ecu.edu/campusmaps?building=43"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">Hskp Day HSC HR</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jean-Luc Scemama</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SCEMAMAJ@ecu.edu">SCEMAMAJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-6313">252-328-6313</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">551<a href="http://www.ecu.edu/campusmaps?building=5"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Howell Science Complex  N-105</td></tr><tr><th class="even">Department</th><td class="even">Biology</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jennie Schindler</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SCHINDLERJ@ecu.edu">SCHINDLERJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-235-4165">252-235-4165</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">612<a href="http://www.ecu.edu/campusmaps?building=239"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Laupus Library 1L-21</td></tr><tr><th class="odd">Department</th><td class="odd">Health Sciences Library</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jeffrey Schmidt</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SCHMIDTJE@ecu.edu">SCHMIDTJE@ecu.edu</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">632<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">Peds Critical Care</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jeffery Schmit</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SCHMITJ@ecu.edu">SCHMITJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-4217">252-328-4217</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">650<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">HVAC West HR</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Josh Schwager</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SCHWAGERJ14@ECU.EDU">SCHWAGERJ14@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">229<a href="http://www.ecu.edu/campusmaps?building=164"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">Enterprise Information Systems</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Justyn Scott</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SCOTTJ@ECU.EDU">SCOTTJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">651<a href="http://www.ecu.edu/campusmaps?building=248"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">CV Sci Shared Clinical Serv</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Joyce Sealey</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SEALEYJ@ecu.edu">SEALEYJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-2822">252-328-2822</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">409<a href="http://www.ecu.edu/campusmaps?building=70"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Jones Residence Hall 042</td></tr><tr><th class="even">Department</th><td class="even">Dining Services</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jarrett Shafer</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SHAFERJ@ECU.EDU">SHAFERJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">148<a href="http://www.ecu.edu/campusmaps?building=6"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">Academic Technologies</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John Shaver</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SHAVERJ@ECU.EDU">SHAVERJ@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">217<a href="http://www.ecu.edu/campusmaps?building=60"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">700 east 14th street</td></tr><tr><th class="even">Department</th><td class="even">Electrical East HR</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">John Shearin</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SHEARINJ@ecu.edu">SHEARINJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-6390">252-328-6390</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">553<a href="http://www.ecu.edu/campusmaps?building=34a"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Messick 105</td></tr><tr><th class="odd">Department</th><td class="odd">School of Theatre and Dance</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Joy Shepard</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SHEPARDJ@ecu.edu">SHEPARDJ@ecu.edu</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">162<a href="http://www.ecu.edu/campusmaps?building=239"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Junior Room 3151</td></tr><tr><th class="even">Department</th><td class="even">NU Undergrad Science Junior</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jean Sherrod</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SHERRODJ@ecu.edu">SHERRODJ@ecu.edu</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">158<a href="http://www.ecu.edu/campusmaps?building=97"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">Student Development</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jefferson Shinpaugh</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SHINPAUGHJ@ecu.edu">SHINPAUGHJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-1852">252-328-1852</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">563<a href="http://www.ecu.edu/campusmaps?building=5"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Howell Science Complex E110A</td></tr><tr><th class="even">Department</th><td class="even">Physics</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Joe Shrader</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SHRADERJ@ecu.edu">SHRADERJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-0029">252-328-0029</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">559<a href="http://www.ecu.edu/campusmaps?building=37"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Minges Coliseum A-20</td></tr><tr><th class="odd">Department</th><td class="odd">Health Education and Promotion</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John Siegel</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SIEGELJ@ecu.edu">SIEGELJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-6841">252-328-6841</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">408<a href="http://www.ecu.edu/campusmaps?building=46"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Student Health Cntr 141</td></tr><tr><th class="even">Department</th><td class="even">Student Health Services</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Judy Siguaw</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SIGUAWJ@ecu.edu">SIGUAWJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-1098">252-328-1098</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">505<a href="http://www.ecu.edu/campusmaps?building=10"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Rivers Building, RW-246 College of Human Ecology</td></tr><tr><th class="odd">Department</th><td class="odd">College of Human Ecology</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John Silvernail</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SILVERNAILJ@ECU.EDU">SILVERNAILJ@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">637<a href="http://www.ecu.edu/campusmaps?building=PCMH"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">BSOM Physical Med and Rehab</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jonnie Simmons</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SIMMONSJO14@ECU.EDU">SIMMONSJO14@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">162<a href="http://www.ecu.edu/campusmaps?building=239"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">NU Graduate Science</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Joseph Simoneaux</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SIMONEAUXJ@ecu.edu">SIMONEAUXJ@ecu.edu</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">651<a href="http://www.ecu.edu/campusmaps?building=248"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Pitt County Memorial Hospital N Tower</td></tr><tr><th class="even">Department</th><td class="even">CV Sci CT Surg Clinical Serv</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jason Sininger</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SININGERJ@ecu.edu">SININGERJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-6824">252-328-6824</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">118<a href="http://www.ecu.edu/campusmaps?building=32"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">364 Wright Building</td></tr><tr><th class="odd">Department</th><td class="odd">Stdnts Rights and Responsibilit</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jennifer Sisk</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SISKJ@ECU.EDU">SISKJ@ECU.EDU</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-6399">252-328-6399</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">555<a href="http://www.ecu.edu/campusmaps?building=95"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Erwin 303</td></tr><tr><th class="even">Department</th><td class="even">English</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jonathan Sitton</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SITTONJ@ecu.edu">SITTONJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-2109">252-328-2109</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">553<a href="http://www.ecu.edu/campusmaps?building=34a"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Messick 209</td></tr><tr><th class="odd">Department</th><td class="odd">School of Theatre and Dance</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Janet Skinner</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SKINNERJ@ecu.edu">SKINNERJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-744-4611">252-744-4611</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">654<a href="http://www.ecu.edu/campusmaps?building=115"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">ECU Family Medicine 600 Moye Blvd.</td></tr><tr><th class="even">Department</th><td class="even">FM Clin Serv Admin</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Judy Skinner</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SKINNERJU@ecu.edu">SKINNERJU@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-744-3330">252-744-3330</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">651<a href="http://www.ecu.edu/campusmaps?building=248"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">115 Heart Dr Rm 2330</td></tr><tr><th class="odd">Department</th><td class="odd">CV Sci Shared Clinical Serv</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Janis Skoczylas</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SKOCZYLASJ@ECU.EDU">SKOCZYLASJ@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">516<a href="http://www.ecu.edu/campusmaps?building=1"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">Academic Library Services</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Julia Sligar</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SLIGARJ@ecu.edu">SLIGARJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-744-3765">252-744-3765</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">659<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">ADI Building (Alumni / News)</td></tr><tr><th class="odd">Department</th><td class="odd">Foundation</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jackie Smith</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SMITHJ@ecu.edu">SMITHJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-6169">252-328-6169</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">213<a href="http://www.ecu.edu/campusmaps?building=43"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Building 43, room 162</td></tr><tr><th class="even">Department</th><td class="even">Hskp Night Academics HR</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">James Smith</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SMITHJAM@ecu.edu">SMITHJAM@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-737-1296">252-737-1296</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">503<a href="http://www.ecu.edu/campusmaps?building=95"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Slay 312</td></tr><tr><th class="odd">Department</th><td class="odd">Management</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">James LeRoy Smith</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SMITHJA@ecu.edu">SMITHJA@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-737-1866">252-737-1866</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">562<a href="http://www.ecu.edu/campusmaps?building=8"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Rivers West 201</td></tr><tr><th class="even">Department</th><td class="even">Philosophy</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jenna Smith</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:PEADENJE@ECU.EDU">PEADENJE@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">628<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">IM Gen Med Admin</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jesse Smith</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SMITHRJ@ECU.EDU">SMITHRJ@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">506<a href="http://www.ecu.edu/campusmaps?building=9"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">Instrumental</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">John Smith</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SMITHJOH@ecu.edu">SMITHJOH@ecu.edu</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">620<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Brody Medical Science 7N-65</td></tr><tr><th class="odd">Department</th><td class="odd">BSOM Anatomy Cell Biology</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John Smith</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SMITHJOHN@ECU.EDU">SMITHJOHN@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">504<a href="http://www.ecu.edu/campusmaps?building=12"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">The Office of Clinical Experiences, 110 Speight</td></tr><tr><th class="even">Department</th><td class="even">COE Spec Ed Found and Research</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Joshua Smith</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SMITHJO@ECU.EDU">SMITHJO@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">553<a href="http://www.ecu.edu/campusmaps?building=34a"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">Sumr Theatre Prte 2008 and 2009</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Judy Smith</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SMITHJU@ecu.edu">SMITHJU@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-9887">252-328-9887</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">205<a href="http://www.ecu.edu/campusmaps?building=127"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">HR Benefits 210 East First Street</td></tr><tr><th class="even">Department</th><td class="even">Benefits</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Judy Smith</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SMITHJUDY@ECU.EDU">SMITHJUDY@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">651<a href="http://www.ecu.edu/campusmaps?building=248"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">CV Sci Gen Card Oseroff</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Judy Smith</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SMITHJUD@ecu.edu">SMITHJUD@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-737-2486">252-737-2486</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">504<a href="http://www.ecu.edu/campusmaps?building=12"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">119 Speight Building (mail) 125 Speight (office)</td></tr><tr><th class="even">Department</th><td class="even">COE Elem Ed Middle Grade Ed</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jill Snyder</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SNYDERJ@ECU.EDU">SNYDERJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">110<a href="http://www.ecu.edu/campusmaps?building=158"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">Special Events</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jonathan Sorensen</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SORENSENJ@ECU.EDU">SORENSENJ@ECU.EDU</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-2411">252-328-2411</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">505<a href="http://www.ecu.edu/campusmaps?building=10"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Department of Criminal Justice Rivers 238</td></tr><tr><th class="even">Department</th><td class="even">Criminal Justice</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">John Southworth</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SOUTHWORTHJ@ECU.EDU">SOUTHWORTHJ@ECU.EDU</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-9089">252-328-9089</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">532<a href="http://www.ecu.edu/campusmaps?building=229"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Self Help Center, Suite 304-B 301 South Evans St.</td></tr><tr><th class="odd">Department</th><td class="odd">Academic Technologies</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jennifer Spence</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STANLEYJE@ecu.edu">STANLEYJE@ecu.edu</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">581<a href="http://www.ecu.edu/campusmaps?building=159"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">COE MSITE Summer Ventures</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jessica Spruill</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SPRUILLJ@ECU.EDU">SPRUILLJ@ECU.EDU</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-737-5014">252-737-5014</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">301<a href="http://www.ecu.edu/campusmaps?building=193"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Greenville Centre, Suite 1100 University Development</td></tr><tr><th class="odd">Department</th><td class="odd">University Development Admin</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jason St Antoine</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STANTOINEJ@ECU.EDU">STANTOINEJ@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">638<a href="http://www.ecu.edu/campusmaps?building=88"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">BSOM Comparative Medicine</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jodie Stackhous</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STACKHOUSJ@ECU.EDU">STACKHOUSJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">740<a href="http://www.ecu.edu/campusmaps?building="><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">IM Neuro Clinics</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jennifer Stahl</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STAHLJ@ECU.EDU">STAHLJ@ECU.EDU</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-744-4184">252-744-4184</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">625<a href="http://www.ecu.edu/campusmaps?building=PCMH"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Janice Stancill</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STANCILLJ@ECU.EDU">STANCILLJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">213<a href="http://www.ecu.edu/campusmaps?building=43"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">Hskp Day Housing HR</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Johnny Stanley</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STANLEYJO@ecu.edu">STANLEYJO@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-744-2136">252-744-2136</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">606<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Brody Medical Science 1E25-A</td></tr><tr><th class="even">Department</th><td class="even">Academic Technologies</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Joy Stapleton</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STAPLETONJ@ecu.edu">STAPLETONJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-6649">252-328-6649</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">504<a href="http://www.ecu.edu/campusmaps?building=12"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Speight - College of Educ 310</td></tr><tr><th class="odd">Department</th><td class="odd">COE Elem Ed Middle Grade Ed</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Joan Staton</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:statonjo@ecu.edu">statonjo@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-744-4787">252-744-4787</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">632<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Vidant Neonatal 2002</td></tr><tr><th class="even">Department</th><td class="even">Peds Neonatology</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jane Steele</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STEELEJA@ECU.EDU">STEELEJA@ECU.EDU</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-6294">252-328-6294</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">232<a href="http://www.ecu.edu/campusmaps?building=122"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">P&amp;T 305 E 10th Street</td></tr><tr><th class="odd">Department</th><td class="odd">Parking and Traffic</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Janis Steele</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STEELEJ@ECU.EDU">STEELEJ@ECU.EDU</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-1571">252-328-1571</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">407<a href="http://www.ecu.edu/campusmaps?building=142"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">128 Student Recreation Center  Room 108 East Carolina University</td></tr><tr><th class="even">Department</th><td class="even">Recreation Services</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">John Steen</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STEENJ@ECU.EDU">STEENJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">555<a href="http://www.ecu.edu/campusmaps?building=95"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">English</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jean Stepps</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STEPPST@ecu.edu">STEPPST@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-744-2194">252-744-2194</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">699<a href="http://www.ecu.edu/campusmaps?building=90"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Family Practice Center Pharmacy 101 Heart Drive</td></tr><tr><th class="even">Department</th><td class="even">Pharmacy Retail</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jennifer Stepps</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STEPPSJ@ecu.edu">STEPPSJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-744-6271">252-744-6271</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">668<a href="http://www.ecu.edu/campusmaps?building=239"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Health Sciences Building Physician Assistant Studies</td></tr><tr><th class="odd">Department</th><td class="odd">Al Hlth Phys Assist Studies</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John Stevens</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STEVENSJ@ecu.edu">STEVENSJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-0104">252-328-0104</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">556<a href="http://www.ecu.edu/campusmaps?building=95"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Harold H. Bate Building 3324A</td></tr><tr><th class="even">Department</th><td class="even">Foreign Languages</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Julia Stevenson</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STEVENSONJ@ecu.edu">STEVENSONJ@ecu.edu</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">632<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">Peds Acute Care Clinics</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John Stiller</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STILLERJ@ecu.edu">STILLERJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-2738">252-328-2738</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">551<a href="http://www.ecu.edu/campusmaps?building=5"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Howell Science Complex S301A</td></tr><tr><th class="even">Department</th><td class="even">Biology</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Josiah Stocker</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STOCKERJ@ECU.EDU">STOCKERJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">553<a href="http://www.ecu.edu/campusmaps?building=34a"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">School of Theatre and Dance</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John Stockstill</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STOCKSTILLJO@ECU.EDU">STOCKSTILLJO@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">623<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Medical Pavilion #5 1800 West Fifth Street</td></tr><tr><th class="even">Department</th><td class="even">Bus OPS Patient Acctg</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">John Stockstill</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STOCKSTILLJ@ECU.EDU">STOCKSTILLJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">701<a href="http://www.ecu.edu/campusmaps?building=D7"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">SODM ORTHPED Div Mgmnt</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John Stowe</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STOWEJ@ECU.EDU">STOWEJ@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">414<a href="http://www.ecu.edu/campusmaps?building=52"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">Career Services</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jesse Strycker</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:STRYCKERJ@ECU.EDU">STRYCKERJ@ECU.EDU</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-9365">252-328-9365</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">504<a href="http://www.ecu.edu/campusmaps?building=12"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Flanagan 335, MailStop 566</td></tr><tr><th class="odd">Department</th><td class="odd">Math Science and Instr Tech Edu</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jeremiah Stuever</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:STUEVERJ@ecu.edu">STUEVERJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-737-4287">252-737-4287</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">229<a href="http://www.ecu.edu/campusmaps?building=164"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">153-5 Cotanche Bldg</td></tr><tr><th class="even">Department</th><td class="even">Systems and Applications Suppor</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jason Sugg</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SUGGJ@ecu.edu">SUGGJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-6787">252-328-6787</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">228<a href="http://www.ecu.edu/campusmaps?building=67"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Blount House (ECU Police) N/A</td></tr><tr><th class="odd">Department</th><td class="odd">Police</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jeannette Sugg</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SUGGJEA@ECU.EDU">SUGGJEA@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">408<a href="http://www.ecu.edu/campusmaps?building=46"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">Student Health Services</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">John Suggs</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SUGGSJ@ECU.EDU">SUGGSJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">222<a href="http://www.ecu.edu/campusmaps?building=172"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Department</th><td class="odd">Grounds Moving Services HR</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jerry Sullivan</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SULLIVANJ@ECU.EDU">SULLIVANJ@ECU.EDU</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-737-7091">252-737-7091</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">701<a href="http://www.ecu.edu/campusmaps?building=D7"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">1851 MacGregor Downs Road, Mail Stop 701</td></tr><tr><th class="even">Department</th><td class="even">SODM DEI Management</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Janine Sumerlin</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SUMERLINJ@ecu.edu">SUMERLINJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-744-3625">252-744-3625</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">619<a href="http://www.ecu.edu/campusmaps?building="><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Thomas Professional Building 109</td></tr><tr><th class="odd">Department</th><td class="odd">Bus OPS Patient Acctg</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">John C. Sutherland</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SUTHERLANDJ@ecu.edu">SUTHERLANDJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-6739">252-328-6739</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">563<a href="http://www.ecu.edu/campusmaps?building=5"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Howell Science Complex C209</td></tr><tr><th class="even">Department</th><td class="even">Physics</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jennifer Sutter</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SUTTERJ@ECU.EDU">SUTTERJ@ECU.EDU</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">632<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">2150 Herbert Court</td></tr><tr><th class="odd">Department</th><td class="odd">Peds Endocrinology</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">James Sutton</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SUTTONJ@ecu.edu">SUTTONJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-6080">252-328-6080</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">222<a href="http://www.ecu.edu/campusmaps?building=172"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Eppes</td></tr><tr><th class="even">Department</th><td class="even">Grounds Moving Services HR</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Jessica Sutton</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:JOHNSONJES@ECU.EDU">JOHNSONJES@ECU.EDU</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-744-2977">252-744-2977</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">639<a href="http://www.ecu.edu/campusmaps?building=PCMH"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Brody School of Medicine 4S-10 Brody Medical Sciences Building</td></tr><tr><th class="odd">Department</th><td class="odd">Surg Transplant Admin</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jill Sutton</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SUTTONJI@ECU.EDU">SUTTONJI@ECU.EDU</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">630<a href="http://www.ecu.edu/campusmaps?building="><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Pitt County Memorial Hospital 136</td></tr><tr><th class="even">Department</th><td class="even">ObGyn General ObGyn</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Joseph Sutton</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SUTTONJO@ECU.EDU">SUTTONJO@ECU.EDU</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-6166">252-328-6166</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">207<a href="http://www.ecu.edu/campusmaps?building=167"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">210 East 4th Street</td></tr><tr><th class="odd">Department</th><td class="odd">Env Health and Safety</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Joel Sweatte</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SWEATTEJ@ecu.edu">SWEATTEJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-9439">252-328-9439</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">507<a href="http://www.ecu.edu/campusmaps?building=203"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Office</th><td class="even">Science &amp; Technology Complex 109</td></tr><tr><th class="even">Department</th><td class="even">Col Tech and Computer Science</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">Johnnie Swindell</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SWINDELLJ@ecu.edu">SWINDELLJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-0409">252-328-0409</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">516<a href="http://www.ecu.edu/campusmaps?building=1"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">1105 Joyner Library, ECU</td></tr><tr><th class="odd">Department</th><td class="odd">Academic Library Services</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Josephine Swinson</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SWINSONJ@ecu.edu">SWINSONJ@ecu.edu</a></td></tr><tr><th class="even">Phone</th><td class="even" itemprop="telephone"><a href="tel:252-328-6731">252-328-6731</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">210<a href="http://www.ecu.edu/campusmaps?building=32"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">Student Stores Admin</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="odd">Name</th><td class="odd" itemprop="name">John Swope</td></tr><tr><th class="odd">E-mail Address</th><td class="odd" itemprop="email"><a href="mailto:SWOPEJ@ecu.edu">SWOPEJ@ecu.edu</a></td></tr><tr><th class="odd">Phone</th><td class="odd" itemprop="telephone"><a href="tel:252-328-1003">252-328-1003</a></td></tr><tr><th class="odd">Mail Stop</th><td class="odd">519<a href="http://www.ecu.edu/campusmaps?building=95"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="odd">Office</th><td class="odd">Speight - College of Educ 154H</td></tr><tr><th class="odd">Department</th><td class="odd">COE Information Library Science</td></tr></tbody><tbody itemscope itemtype="http://schema.org/Person"><tr><th class="even">Name</th><td class="even" itemprop="name">Jennifer Sylvester</td></tr><tr><th class="even">E-mail Address</th><td class="even" itemprop="email"><a href="mailto:SYLVESTERJ@ecu.edu">SYLVESTERJ@ecu.edu</a></td></tr><tr><th class="even">Mail Stop</th><td class="even">632<a href="http://www.ecu.edu/campusmaps?building=15"><img src="../images/secondLevel/world_go.png" width="16" height="16" alt="Map">&nbsp;Map</a></td></tr><tr><th class="even">Department</th><td class="even">Peds General Pediatrics</td></tr></tbody>
+		</tbody>
+	</table>
+
+<p class="explanation">Faculty and Staff information is downloaded from Banner. Faculty and Staff can update their information by visiting <a href="https://onestop.ecu.edu">OneStop</a>, logging in and accessing the Banner Self-Service link on the Tools page. Information is available one day after a correction is made.</p>
+			</div>
+
+			<div id="tab-departmentsearch">
+			<form action="/ecu/directory.php" method="get">
+	<fieldset>
+		<label for="department">Department Name </label>
+		<br />
+		<input class="searchinput" name="term" id="departmentterm" type="text" size="40" value="" />
+		<br />
+		<input type="hidden" name="type" value="department" />
+		<input type="submit" name="submit" value="Search" />
+	</fieldset>
+</form>
+
+
+<ul class="menuList">
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=1">1</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=A">A</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=B">B</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=C">C</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=D">D</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=E">E</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=F">F</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=G">G</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=H">H</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=I">I</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=J">J</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=K">K</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=L">L</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=M">M</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=N">N</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=O">O</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=P">P</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=R">R</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=S">S</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=T">T</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=U">U</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=V">V</a></li>
+<li><a href = "/ecu/directory.php?browse=1&amp;type=department&amp;submit=submit&amp;term=W">W</a></li>
+</ul>
+
+<p class="explanation">Department information is updated from the East Carolina University Telephone Directories SharePoint site.  To update information, please send a request to your departmental telephone bill contact.  Information is available one day after a correction is made.</p>
+			</div>
+
+			<div id="tab-reversesearch">
+			<form action="/ecu/directory.php" method="get">
+	<fieldset>
+		<label for="reverseinput">Phone Number</label>
+		<br />
+		<input class="searchinput" name="term" id="reverseinput" type="text" size="40" value="" />
+		<input type="hidden" name="type" value="reverse" />
+		<input type="submit" name="submit" value="Search" />
+	</fieldset>
+</form>			</div>
+			<div id="tab-pdfs">
+	<ul class="pdfList">
+	<li><a class="completeDirectory" href="/cs-ecu/documents/DeptDirectory.pdf">Department Listings (3.5M)</a></li>
+	<!-- <li><a class="completeDirectory" href="/cs-ecu/documents/StaffDirectory.pdf">Faculty / Staff Listings (11.0M)</a></li> -->
+	<li><a class="completeDirectory" href="/cs-ecu/documents/QuickReference.pdf">Quick Reference Page</a></li>
+	</ul>
+
+	<h2>Department Listings</h2>
+	<div class="author_alphabetic">
+	<ul>
+		<li><a title="1" href="/cs-ecu/documents/DeptDirectory-1.pdf"><span class="first"><span>1</span></span></a></li>
+		<li><a title="A" href = "/cs-ecu/documents/DeptDirectory-A.pdf"><span class="first"><span>A</span></span></a></li>
+<li><a title="B" href = "/cs-ecu/documents/DeptDirectory-B.pdf"><span class="first"><span>B</span></span></a></li>
+<li><a title="C" href = "/cs-ecu/documents/DeptDirectory-C.pdf"><span class="first"><span>C</span></span></a></li>
+<li><a title="D" href = "/cs-ecu/documents/DeptDirectory-D.pdf"><span class="first"><span>D</span></span></a></li>
+<li><a title="E" href = "/cs-ecu/documents/DeptDirectory-E.pdf"><span class="first"><span>E</span></span></a></li>
+<li><a title="F" href = "/cs-ecu/documents/DeptDirectory-F.pdf"><span class="first"><span>F</span></span></a></li>
+<li><a title="G" href = "/cs-ecu/documents/DeptDirectory-G.pdf"><span class="first"><span>G</span></span></a></li>
+<li><a title="H" href = "/cs-ecu/documents/DeptDirectory-H.pdf"><span class="first"><span>H</span></span></a></li>
+<li><a title="I" href = "/cs-ecu/documents/DeptDirectory-I.pdf"><span class="first"><span>I</span></span></a></li>
+<li><a title="J" href = "/cs-ecu/documents/DeptDirectory-J.pdf"><span class="first"><span>J</span></span></a></li>
+<li><a title="K" href = "/cs-ecu/documents/DeptDirectory-K.pdf"><span class="first"><span>K</span></span></a></li>
+<li><a title="L" href = "/cs-ecu/documents/DeptDirectory-L.pdf"><span class="first"><span>L</span></span></a></li>
+<li><a title="M" href = "/cs-ecu/documents/DeptDirectory-M.pdf"><span class="first"><span>M</span></span></a></li>
+<li><a title="N" href = "/cs-ecu/documents/DeptDirectory-N.pdf"><span class="first"><span>N</span></span></a></li>
+<li><a title="O" href = "/cs-ecu/documents/DeptDirectory-O.pdf"><span class="first"><span>O</span></span></a></li>
+<li><a title="P" href = "/cs-ecu/documents/DeptDirectory-P.pdf"><span class="first"><span>P</span></span></a></li>
+<li><a title="R" href = "/cs-ecu/documents/DeptDirectory-R.pdf"><span class="first"><span>R</span></span></a></li>
+<li><a title="S" href = "/cs-ecu/documents/DeptDirectory-S.pdf"><span class="first"><span>S</span></span></a></li>
+<li><a title="T" href = "/cs-ecu/documents/DeptDirectory-T.pdf"><span class="first"><span>T</span></span></a></li>
+<li><a title="U" href = "/cs-ecu/documents/DeptDirectory-U.pdf"><span class="first"><span>U</span></span></a></li>
+<li><a title="V" href = "/cs-ecu/documents/DeptDirectory-V.pdf"><span class="first"><span>V</span></span></a></li>
+<li><a title="W" href = "/cs-ecu/documents/DeptDirectory-W.pdf"><span class="first"><span>W</span></span></a></li>
+<li><a title="Z" href = "/cs-ecu/documents/DeptDirectory-Z.pdf"><span class="first"><span>Z</span></span></a></li>
+	</ul>
+	</div>
+
+	<div class="clear"></div>
+
+	<!--<h2>Faculty / Staff Listings</h2>
+	<div class="author_alphabetic">
+	<ul>
+			</ul>
+	</div> -->
+
+	<div class="clear"></div>
+
+	<p class="explanation">Department information is updated from the East Carolina University Telephone Directories SharePoint site.  To update information, please send a request to your departmental telephone bill contact.  Information is available one day after a correction is made.</p>
+	<!-- <p class="explanation">Faculty and Staff information is downloaded from Banner. Faculty and Staff can update their information by visiting <a href="https://onestop.ecu.edu">OneStop</a>, logging in and accessing the Banner Self-Service link on the Tools page. Information is available one day after a correction is made.</p> -->
+
+</div>
+		</div>
+		<!-- tabs -->
+
+		<h2 class="generalLinkHeading">ECU E-mail User Quick Links</h2>
+		<ul id="quicklinks">
+			<li><a href="https://pirateid.ecu.edu/">Change Your E-mail Password</a></li>
+			<li><a href="https://www.ecu.edu/itcs/ironport/">Check Your E-mail Spam Filter (IronPort)</a></li>
+			<li><a href="http://www.ecu.edu/itcs/email/outlooklive.cfm">Getting Started with E-mail: Students</a></li>
+			<li><a href="http://www.ecu.edu/cs-itcs/email/FacultyStaffEmail.cfm">Getting Started With E-mail: Faculty/Staff</a></li>
+			<li><a href="http://www.ecu.edu/cs-itcs/email/homeoutlook.cfm">Configure Outlook for Home</a>&nbsp;</li>
+			<li><a href="http://www.ecu.edu/cs-itcs/email/imap.cfm">Configure Other E-mail Client</a></li>
+			<li><a href="http://www.ecu.edu/itcs/studentcomputerlabs">Find a Computer Lab to Check E-mail</a></li>
+		</ul>
+
+
+
+		<!-- Content Ends -->
+
+
+
+
+		</div>
+		<div class="pageExtras">
+
+			<ul class="legacyEmailLinks">
+				<li><a href="https://piratemail.ecu.edu/"><img src="/images/ecuhome/tb_mail_purple_drop.gif" width="27" height="22" alt="Purple Envelope" />Fac/Staff E-mail</a></li>
+				<li><a href="https://mymail.ecu.edu/"><img src="/images/ecuhome/tb_mail_purple_drop.gif" width="27" height="22" alt="Purple Envelope" />Student E-mail</a></li>
+			</ul>
+
+
+		<div class="pageAdvertisement">
+			<a href='/cs-itcs/mobile/mobileApp.cfm'><div class='textAd'>ECU Mobile App</div><img class='imageAd' src='/images/secondLevel/ads/default/mobile_app_ad.jpg' alt='ECU Mobile App' /></a>
+
+
+		</div>
+		<div id="calendar">
+			<h2 id="eventsLabel">
+				Events
+			</h2>
+			<div class="calendarNav upNav" id="upCalNav">
+				<img src="/images/secondLevel/calendarUpNav.png" alt="Calendar Up Navigation">
+			</div>
+			<div id="eventsListed">
+			<div class='fullCalendarLink'><a href='http://www.ecu.edu/cs-ecu/calendar.cfm' class='readMore'>— More Events—</a></div>			</div>
+
+			<div class="calendarNav dnNav" id="dnCalNav">
+				<img src="/images/secondLevel/calendarDnNav.png" alt="Calendar Up Navigation">
+			</div>
+
+		</div>
+
+
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<div class="clear"></div>
+
+<div id="footerWrap">
+	<div id="footer">
+		<div id="address">
+			<img src="/images/ecu_logo.png" id="footerLogo" width="80" height="51" alt="East Carolina University Logo" />
+			<address itemscope itemtype="http://schema.org/Organization">
+				<span itemprop="name">East Carolina University</span><br />
+				<span itemprop="streetAddress">East Fifth Street</span> | <span itemprop="addressLocality">Greenville, NC</span> <span itemprop="postalCode">27858-4353</span> USA<br />
+				<span itemprop="telephone"><a href="tel:252-328-6131">252.328.6131</a></span> | <a href="http://www.ecu.edu/cs-ecu/contact_us.cfm">Contact Us</a><br />
+				&copy; 2013 | <a href="http://www.ecu.edu/cs-ecu/use_privacy.cfm">Terms of Use</a> | Last Updated: <span id="lastUpdated"></span> | <a href="http://m.ecu.edu">Mobile Version</a>
+			</address>
+		</div>
+		<div id="givetoecu">
+			<a href="http://www.ecu.edu/devt/"><img src="/images/give_to_ecu.png" width="252" height="46" alt="Give To East Carolina University" /></a>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div id="footerShadow">
+		<img src="/images/footer_shad.png" width="962" alt="" />
+	</div>
+</div> <!-- footer-wrap -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(["_setAccount", "UA-15287402-1"]);
+	_gaq.push(['_setDomainName', '.ecu.edu']);
+	_gaq.push(["_trackPageview"]);
+	
+	
+(function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!-- Google Code for Website visitors Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+	var google_conversion_id = 1039369201;
+	var google_conversion_language = "en";
+	var google_conversion_format = "3";
+	var google_conversion_color = "666666";
+	var google_conversion_label = "XFmtCKW29QEQ8YfO7wM";
+	var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+	<div style="display:inline;">
+		<img 
+			height="1" 
+			width="1" 
+			style="border-style:none;" 
+			alt="" 
+			src="http://www.googleadservices.com/pagead/conversion/1039369201/?label=XFmtCKW29QEQ8YfO7wM&amp;guid=ON&amp;script=0"/>
+	</div>
+</noscript>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+<script src="/js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+<script src="/js/jquery.cycle.lite.min.js" type="text/javascript"></script>
+<script src="/js/jquery.mousewheel-3.0.4.pack.js" type="text/javascript"></script>
+<script src="/js/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
+<script src="/js/jquery.easing-1.3.pack.js" type="text/javascript"></script>
+<script src="/js/jquery.corner.js" type="text/javascript"></script>
+<script src="/js/secondLevel/resizing.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#formtabs").tabs({ selected: 0 });
+});
+</script>
+</body>
+</html>

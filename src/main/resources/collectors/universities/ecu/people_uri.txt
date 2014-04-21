@@ -1,0 +1,1 @@
+http://www.ecu.edu/ecu/directory.php?lastname=%lastname%&firstname=%firstname%&peoplefilter=1&type=people&submit=Search

@@ -8,6 +8,7 @@ public class Job {
 	private String position;
 	private String title;
 	private String organization;
+	private String department;
 	private Date startDate;
 	private Date endDate;
 	private Double yearsEmployed;
@@ -75,6 +76,14 @@ public class Job {
 
 	public void setSalery(Double salery) {
 		this.salery = salery;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 }

@@ -6,7 +6,7 @@ import pi.Person;
 
 public interface Collector {
 	
-	boolean collectInfo(List<Person> p);
+	List<Person> collectInfo(List<Person> p);
 
-	boolean collectInfo(Person p);
+	Person collectInfo(Person p);
 }

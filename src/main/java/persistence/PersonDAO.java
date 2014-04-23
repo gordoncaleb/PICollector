@@ -1,7 +1,5 @@
 package persistence;
 
-import java.util.List;
-
 import pi.Person;
 import pi.name.Name;
 
@@ -11,6 +9,10 @@ public interface PersonDAO {
 
 	public void removePerson(Person p);
 
-	public void findPersonByName(List<Name> names);
+	public Person findPersonByFirstNameAndLastName(Name firstName, Name lastName);
+
+	public Person findPersonByFirstName(Name firstName);
+
+	public Person findPersonByLastName(Name lastName);
 
 }

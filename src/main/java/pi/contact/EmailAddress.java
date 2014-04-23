@@ -1,9 +1,16 @@
 package pi.contact;
 
-
-public class EmailAddress implements Contact {
+public class EmailAddress {
 	private String userName;
 	private String domain;
+
+	public EmailAddress(String fullAddress) {
+		String[] tokens = fullAddress.split("@");
+		if (tokens.length > 1) {
+			userName = tokens[0];
+			domain = tokens[1];
+		}
+	}
 
 	public String getUserName() {
 		return userName;
@@ -23,12 +30,11 @@ public class EmailAddress implements Contact {
 
 	@Override
 	public String toString() {
-		return "EmailAddress [userName=" + userName + ", domain=" + domain
-				+ "]";
+		return "EmailAddress [userName=" + userName + ", domain=" + domain + "]";
 	}
 
-	public static String getFullAddress(EmailAddress a) {
-		return a.getUserName() + "@" + a.getDomain();
+	public String getFullAddress() {
+		return getUserName() + "@" + getDomain();
 	}
 
 }

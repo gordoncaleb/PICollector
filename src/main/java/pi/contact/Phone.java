@@ -1,9 +1,18 @@
 package pi.contact;
 
+public class Phone {
 
-public abstract class Phone implements Contact {
+	private String number;
+	private String provider;
 
-	protected String number;
+	public Phone() {
+		super();
+	}
+
+	public Phone(String number) {
+		super();
+		this.number = number;
+	}
 
 	public String getNumber() {
 		return number;
@@ -12,5 +21,16 @@ public abstract class Phone implements Contact {
 	public void setNumber(String number) {
 		this.number = number;
 	}
+
+	public String getProvider() {
+		return provider;
+	}
+
+	public void setProvider(String provider) {
+		this.provider = provider;
+	}
+	
+	
+	
 
 }

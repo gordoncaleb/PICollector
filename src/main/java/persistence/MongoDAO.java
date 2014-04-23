@@ -1,21 +1,30 @@
 package persistence;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
+import com.mongodb.MongoClient;
+
 public class MongoDAO {
 
-	@Autowired
-	MongoOperations mongoOperation;
+	public static MongoTemplate mongoTemplate;
 
-	public Long getSequenceNum(Class<?> c) {
+	static {
+		try {
+			mongoTemplate = new MongoTemplate(new MongoClient("127.0.0.1"), "pidata");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static Long getSequenceNum(Class<?> c) {
 
 		// get sequence id
-		Query query = new Query(Criteria.where("_id").is(c.getCanonicalName()));
+		Query query = new Query(Criteria.where("id").is(c.getCanonicalName()));
 
 		// increase sequence id by 1
 		Update update = new Update();
@@ -26,8 +35,12 @@ public class MongoDAO {
 		options.returnNew(true);
 
 		// this is the magic happened.
-		SequenceId seqId = mongoOperation.findAndModify(query, update, options,
-				SequenceId.class);
+		SequenceId seqId = mongoTemplate.findAndModify(query, update, options, SequenceId.class);
+
+		if (seqId == null) {
+			seqId = new SequenceId(c.getCanonicalName(), 0L);
+			mongoTemplate.save(seqId);
+		}
 
 		return seqId.getSequenceNum();
 	}

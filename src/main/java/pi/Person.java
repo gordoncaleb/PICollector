@@ -1,33 +1,64 @@
 package pi;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import persistence.PersistenceEntity;
-import pi.contact.Contact;
+import pi.contact.EmailAddress;
+import pi.contact.Phone;
 import pi.job.Job;
 import pi.name.Name;
+import util.StringUtils;
 
-public class Person implements PersistenceEntity {
+public class Person {
 
 	private Long id;
 
-	private Name preferredName;
-	private List<Name> names;
-	private List<Contact> contactInfo;
-	private List<Job> jobs;
+	private Name firstName;
+	private Name middleName;
+	private Name lastName;
+	private List<Name> otherNames = new ArrayList<Name>();
+	private List<EmailAddress> emailAddresses = new ArrayList<EmailAddress>();
+	private List<Phone> phones = new ArrayList<Phone>();
+	private List<Job> jobs = new ArrayList<Job>();
 
 	public Person() {
 		super();
 	}
 
-	public Person(Long id, Name preferredName, List<Name> names,
-			List<Contact> contactInfo, List<Job> jobs) {
-		super();
-		this.id = id;
-		this.preferredName = preferredName;
-		this.names = names;
-		this.contactInfo = contactInfo;
-		this.jobs = jobs;
+	public Name getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(Name firstName) {
+		this.firstName = firstName;
+	}
+
+	public Name getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(Name lastName) {
+		this.lastName = lastName;
+	}
+
+	public Name getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(Name middleName) {
+		this.middleName = middleName;
+	}
+
+	public List<Name> getOtherNames() {
+		return otherNames;
+	}
+
+	public void setOtherNames(List<Name> otherNames) {
+		this.otherNames = otherNames;
+	}
+
+	public void addOtherName(String name) {
+		this.otherNames.add(new Name(name));
 	}
 
 	public Long getId() {
@@ -38,30 +69,6 @@ public class Person implements PersistenceEntity {
 		this.id = id;
 	}
 
-	public Name getPreferredName() {
-		return preferredName;
-	}
-
-	public void setPreferredName(Name preferredName) {
-		this.preferredName = preferredName;
-	}
-
-	public List<Name> getNames() {
-		return names;
-	}
-
-	public void setNames(List<Name> names) {
-		this.names = names;
-	}
-
-	public List<Contact> getContactInfo() {
-		return contactInfo;
-	}
-
-	public void setContactInfo(List<Contact> contactInfo) {
-		this.contactInfo = contactInfo;
-	}
-
 	public List<Job> getJobs() {
 		return jobs;
 	}
@@ -70,11 +77,95 @@ public class Person implements PersistenceEntity {
 		this.jobs = jobs;
 	}
 
+	public void addJob(Job j) {
+		this.jobs.add(j);
+	}
+
+	public List<EmailAddress> getEmailAddresses() {
+		return emailAddresses;
+	}
+
+	public void setEmailAddresses(List<EmailAddress> emailAddresses) {
+		this.emailAddresses = emailAddresses;
+	}
+
+	public void addEmailAddress(EmailAddress email) {
+		this.emailAddresses.add(email);
+	}
+
+	public List<Phone> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
+	}
+
+	public void addPhone(Phone phone) {
+		this.phones.add(phone);
+	}
+
+	public boolean nameMatch(List<String> names) {
+		if (names.isEmpty()) {
+			return false;
+		}
+
+		List<String> nameListA = new ArrayList<String>();
+
+		if (firstName != null) {
+			nameListA.add(firstName.getName());
+		}
+
+		if (middleName != null) {
+			nameListA.add(middleName.getName());
+		}
+
+		if (lastName != null) {
+			nameListA.add(lastName.getName());
+		}
+
+		List<String> nameListB = new ArrayList<String>();
+		nameListB.addAll(names);
+
+		StringUtils.removeMatchesIgnoreCase(nameListA, nameListB);
+
+		if (nameListB.isEmpty()) {
+			return true;
+		} else {
+
+			List<String> initialsB = new ArrayList<String>();
+			for (String b : nameListB) {
+				if (b.length() == 1) {
+					initialsB.add(b);
+				}
+			}
+
+			if (!initialsB.isEmpty()) {
+
+				List<String> initialsA = new ArrayList<String>();
+				for (String a : nameListA) {
+					initialsA.add(a.substring(0, 1));
+				}
+
+				StringUtils.removeMatchesIgnoreCase(initialsA, initialsB);
+
+				if (initialsB.isEmpty()) {
+					return true;
+				} else {
+					return false;
+				}
+
+			}
+		}
+
+		return false;
+
+	}
+
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", preferredName=" + preferredName
-				+ ", names=" + names + ", contactInfo=" + contactInfo
-				+ ", jobs=" + jobs + "]";
+		return "Person [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", otherNames="
+				+ otherNames + ", emailAddresses=" + emailAddresses + ", phones=" + phones + ", jobs=" + jobs + "]";
 	}
 
 }

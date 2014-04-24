@@ -29,8 +29,10 @@ public class Phone {
 	public void setProvider(String provider) {
 		this.provider = provider;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Phone [number=" + number + ", provider=" + provider + "]";
+	}
 
 }

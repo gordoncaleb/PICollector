@@ -1,8 +1,8 @@
 package collector;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -13,15 +13,13 @@ import org.jsoup.select.Elements;
 import pi.Person;
 import pi.contact.EmailAddress;
 import pi.contact.Phone;
-import pi.name.Name;
 import util.IOUtils;
-import util.StringUtils;
 
-public class ECUCollector implements Collector {
+public class ECUCollector extends Collector {
 
 	private String peopleURI;
 
-	private ECUCollector() {
+	public ECUCollector() {
 
 		try {
 			peopleURI = IOUtils.getResource("/collectors", "universities", "ecu", "people_uri.txt");
@@ -48,7 +46,9 @@ public class ECUCollector implements Collector {
 			// "universities", "ecu", "example_search_results",
 			// "js_search.htm");
 
-			String personURI = peopleURI.replaceAll("%lastname%", p.getLastName().getName()).replaceAll("%firstname", p.getFirstName().getName());
+			String personURI = peopleURI.replaceAll("%lastname%", p.getLastName().getName()).replaceAll("%firstname%", p.getFirstName().getName());
+
+			System.out.println("Getting URI " + personURI);
 
 			Document doc = Jsoup.connect(personURI).get();
 
@@ -80,7 +80,7 @@ public class ECUCollector implements Collector {
 
 							if (emailElements.size() > 0) {
 								String email = emailElements.get(0).text();
-								System.out.println("Email:" + emailElements);
+								System.out.println("Email:" + email);
 								p.addEmailAddress(new EmailAddress(email));
 							}
 
@@ -99,6 +99,8 @@ public class ECUCollector implements Collector {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		p.setUpdated(new Date());
 
 		return p;
 

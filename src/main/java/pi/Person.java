@@ -1,6 +1,7 @@
 package pi;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import pi.contact.EmailAddress;
@@ -12,6 +13,8 @@ import util.StringUtils;
 public class Person {
 
 	private Long id;
+
+	private Date updated;
 
 	private Name firstName;
 	private Name middleName;
@@ -103,6 +106,14 @@ public class Person {
 
 	public void addPhone(Phone phone) {
 		this.phones.add(phone);
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 
 	public boolean nameMatch(List<String> names) {

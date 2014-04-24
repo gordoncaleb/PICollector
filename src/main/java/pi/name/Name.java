@@ -16,11 +16,15 @@ public class Name {
 	}
 
 	public String getInitial() {
-		if (name != null) {
+		if (name != null && !name.isEmpty()) {
 			return name.substring(0, 1).toUpperCase();
 		} else {
 			return "";
 		}
+	}
+
+	public boolean isInitial() {
+		return (name.length() == 1);
 	}
 
 	public void setInitial(String initial) {
@@ -38,8 +42,8 @@ public class Name {
 	public String toString() {
 		return "Name [initial=" + this.getInitial() + ", name=" + name + "]";
 	}
-	
-	public boolean match(String s){
+
+	public boolean match(String s) {
 		return name.equalsIgnoreCase(s);
 	}
 

@@ -86,4 +86,10 @@ public class Job {
 		this.department = department;
 	}
 
+	@Override
+	public String toString() {
+		return "Job [id=" + id + ", position=" + position + ", title=" + title + ", organization=" + organization + ", department=" + department
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", yearsEmployed=" + yearsEmployed + ", salery=" + salery + "]";
+	}
+
 }

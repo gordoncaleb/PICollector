@@ -11,11 +11,11 @@ import com.mongodb.MongoClient;
 
 public class MongoDAO {
 
-	public static MongoTemplate mongoTemplate;
+	public static MongoTemplate piDataMongoTemplate;
 
 	static {
 		try {
-			mongoTemplate = new MongoTemplate(new MongoClient("127.0.0.1"), "pidata");
+			piDataMongoTemplate = new MongoTemplate(new MongoClient("127.0.0.1"), "pidata");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -28,18 +28,18 @@ public class MongoDAO {
 
 		// increase sequence id by 1
 		Update update = new Update();
-		update.inc("seq", 1);
+		update.inc("sequenceNum", 1);
 
 		// return new increased id
 		FindAndModifyOptions options = new FindAndModifyOptions();
 		options.returnNew(true);
 
 		// this is the magic happened.
-		SequenceId seqId = mongoTemplate.findAndModify(query, update, options, SequenceId.class);
+		SequenceId seqId = piDataMongoTemplate.findAndModify(query, update, options, SequenceId.class);
 
 		if (seqId == null) {
 			seqId = new SequenceId(c.getCanonicalName(), 0L);
-			mongoTemplate.save(seqId);
+			piDataMongoTemplate.save(seqId);
 		}
 
 		return seqId.getSequenceNum();

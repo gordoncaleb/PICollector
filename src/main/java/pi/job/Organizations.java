@@ -1,7 +1,6 @@
 package pi.job;
 
-import collector.Collector;
-import collector.ECUCollector;
+import collector.*;
 
 public class Organizations {
 
@@ -19,8 +18,26 @@ public class Organizations {
 	public static Collector getCollector(String organization) {
 
 		switch (organization) {
+		case APPALACHIAN_STATE:
+			return new AppStateCollector();
 		case EAST_CAROLINA:
 			return new ECUCollector();
+		case FAYETTEVILLE_STATE:
+			return new FayettevilleStateCollector();
+		case NC_SCIENCE_MATH:
+			return new NcScienceMath();
+		case NC_AT_STATE:
+			return new NcATStateCollector();
+		case NC_CENTRAL:
+			return new NcCentralCollector();
+		case NC_STATE:
+			return new NcStateCollector();
+		case UNC_CHAPEL_HILL:
+			return new UncChapHillCollector();
+		case UNC_CHARLOTTE:
+			return new UncCharlotteCollector();
+		case UNC_WILMINGTON:
+			return new UncWilmingtonCollector();
 		default:
 			return null;
 		}

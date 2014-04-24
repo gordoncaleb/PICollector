@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 
 public class StringUtils {
 
+	public static final String emailRegex = "[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})";
+
 	public static int stringMatchesIgnoreCase(List<String> aList, List<String> bList) {
 
 		int matches = 0;
@@ -63,5 +65,14 @@ public class StringUtils {
 		}
 
 		return allMatches;
+	}
+
+	public static String getBaseURL(String url) {
+		int last = url.lastIndexOf("/");
+		if (last > 0) {
+			return url.substring(0, last);
+		} else {
+			return url;
+		}
 	}
 }

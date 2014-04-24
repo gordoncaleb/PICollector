@@ -1,0 +1,1 @@
+http://www.ncsu.edu/directory/?lastnametype=starts&lastname=%lastname%&firstnametype=starts&firstname=%firstname%&emailaddresstype=equals&emailaddress=&addresstype=contains&address=&phonenumbertype=ends&phonenumber=&departmenttype=contains&department=&titletype=contains&title=&searchtype=both&matchnicks=on&includevcard=on&matchprevlast=on&order=mixed&style=normal&search=Search

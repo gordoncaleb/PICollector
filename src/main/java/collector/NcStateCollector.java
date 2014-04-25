@@ -41,33 +41,30 @@ public class NcStateCollector extends Collector {
 	}
 
 	@Override
-	List<Person> collectInfo(List<Person> p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	Person collectInfo(Person p) {
 		try {
-			String resPage = IOUtils.getResource("/collectors", "universities", "ncstate", "beasley_mark_search.htm");
+			// String resPage = IOUtils.getResource("/collectors",
+			// "universities", "ncstate", "beasley_mark_search.htm");
+
+			System.out.println("Collecting data on " + p.getFirstName() + " " + p.getLastName());
 
 			String personURI = peopleURI.replaceAll("%lastname%", p.getLastName().getName()).replaceAll("%firstname%", p.getFirstName().getName());
 
 			System.out.println("Getting URI " + personURI);
 
-			// Document doc = Jsoup.connect(personURI).get();
+			Document doc = Jsoup.connect(personURI).get();
 
-			Document doc = Jsoup.parse(resPage);
+			// Document doc = Jsoup.parse(resPage);
 
 			Elements searchResults = doc.select("div.searchresult");
 
-			System.out.println("Found " + searchResults.size() + " searchResults");
+			//System.out.println("Found " + searchResults.size() + " searchResults");
 
 			if (searchResults.size() > 0) {
 
 				Elements tbodies = searchResults.get(0).select("tbody");
 
-				System.out.println("Found " + tbodies.size() + " tbodies");
+				//System.out.println("Found " + tbodies.size() + " tbodies");
 
 				for (Element e : tbodies) {
 
@@ -89,7 +86,7 @@ public class NcStateCollector extends Collector {
 
 						List<List<String>> phoneMatches = StringUtils.getMatches("Phone: ?([-0-9]+)", rightEl);
 
-						if (!emailMatches.isEmpty()) {
+						if (!phoneMatches.isEmpty()) {
 							Phone phone = new Phone(phoneMatches.get(0).get(1));
 							p.addPhone(phone);
 							System.out.println(phone);
@@ -97,18 +94,20 @@ public class NcStateCollector extends Collector {
 
 					}
 
-					Elements farRightElements = e.select("td[align=right],[valign=middle]");
-
-					if (!farRightElements.isEmpty()) {
-						Elements links = farRightElements.select("a[href*=evc]");
-
-						for (Element link : links) {
-							String vcarUrl = StringUtils.getBaseURL(personURI) + "/" + link.attr("href");
-							System.out.println("Get? " + vcarUrl);
-							Document vcard = Jsoup.connect(vcarUrl).get();
-							System.out.println(vcard.text());
-						}
-					}
+					// Elements farRightElements =
+					// e.select("td[align=right],[valign=middle]");
+					//
+					// if (!farRightElements.isEmpty()) {
+					// Elements links = farRightElements.select("a[href*=evc]");
+					//
+					// for (Element link : links) {
+					// String vcarUrl = StringUtils.getBaseURL(personURI) + "/"
+					// + link.attr("href");
+					// System.out.println("Get? " + vcarUrl);
+					// Document vcard = Jsoup.connect(vcarUrl).get();
+					// System.out.println(vcard.text());
+					// }
+					// }
 
 				}
 			}

@@ -2,12 +2,12 @@ package persistence;
 
 import java.util.List;
 
+import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import pi.Person;
 import pi.name.Name;
-
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
@@ -15,11 +15,11 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@Override
 	public void save(Person p) {
-		
+
 		if (p.getId() == null) {
 			p.setId(MongoDAO.getSequenceNum(Person.class));
 		}
-		
+
 		MongoDAO.piDataMongoTemplate.save(p);
 	}
 
@@ -49,6 +49,14 @@ public class PersonDAOImpl implements PersonDAO {
 		// System.out.println(query.toString());
 
 		return MongoDAO.piDataMongoTemplate.find(query, Person.class);
+	}
+
+	public List<Person> basicQuery(String query) {
+		return MongoDAO.piDataMongoTemplate.find(new BasicQuery(query), Person.class);
+	}
+
+	public List<Person> hasEmail() {
+		return MongoDAO.piDataMongoTemplate.find(query(where("emailAddresses").not().size(0)), Person.class);
 	}
 
 	@Override

@@ -9,27 +9,52 @@ import pi.job.Organizations;
 
 public abstract class Collector {
 
-	abstract List<Person> collectInfo(List<Person> p);
+	public List<Person> collectInfo(List<Person> people) {
+		for (Person p : people) {
+			collectInfo(p);
+		}
+		return people;
+	}
 
 	abstract Person collectInfo(Person p);
 
 	public static void main(String[] args) {
 		PersonDAOImpl dao = new PersonDAOImpl();
 
-		List<Person> ecuPeople = dao.findPersonsByOrganization(Organizations.EAST_CAROLINA);
+		// collectOrganization(Organizations.EAST_CAROLINA, dao);
+		// collectOrganization(Organizations.NC_STATE, dao);
+		collectOrganization(Organizations.UNC_CHAPEL_HILL, dao);
 
-		System.out.println("Searching for " + ecuPeople.size());
+		List<Person> people = dao.hasEmail();
 
-		Collector collector = Organizations.getCollector(Organizations.EAST_CAROLINA);
+		// for (Person p : people) {
+		// System.out.println(p);
+		// }
 
-		for (Person p : ecuPeople) {
+		System.out.println("There are " + people.size() + " people with email addresses in the database!");
+	}
 
-			if (p.getUpdated() == null || ((System.currentTimeMillis() - p.getUpdated().getTime()) > TimeUnit.HOURS.toMillis(1))) {
+	public static void collectOrganization(String org, PersonDAOImpl dao) {
+		List<Person> people = dao.findPersonsByOrganization(org);
+
+		System.out.println("Searching for " + people.size());
+
+		Collector collector = Organizations.getCollector(org);
+
+		boolean test = false;
+		int i = 0;
+		for (Person p : people) {
+
+			if (i > 5 && test) {
+				break;
+			}
+
+			if (p.getUpdated() == null || ((System.currentTimeMillis() - p.getUpdated().getTime()) > TimeUnit.HOURS.toMillis(1)) || test) {
 				collector.collectInfo(p);
 				dao.save(p);
 			}
+			i++;
 
 		}
-
 	}
 }

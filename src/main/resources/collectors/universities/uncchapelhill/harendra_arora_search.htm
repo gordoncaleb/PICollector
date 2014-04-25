@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+
+
+
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>	
+	<title>UNC Directory Search</title>
+  
+ <style type="text/css">
+  .body {
+      width:968px;
+      margin: 0 auto;
+      margin-top:20px;
+      margin-bottom:20px;
+	  padding-top:5px;
+  }
+  </style> 
+    
+</head>
+
+<body onload="runOnLoad()">
+ 
+		<div class="body">
+			
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/tabview/assets/skins/sam/tabview.css" />
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/calendar/assets/skins/sam/calendar.css"/>
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/container/assets/skins/sam/container.css"/>
+
+
+    <!-- Jose Added -->
+	<!-- Dependencies -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/json/json-min.js" ></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/connection/connection-min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/animation/animation-min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/container/container-min.js"></script>
+	<!--  JH added: checklist dependencies -->	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/element/element-beta.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/calendar/calendar-min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/datasource/datasource-min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/autocomplete/autocomplete-min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/tabview/tabview-min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.6.0/build/cookie/cookie-min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="/dir/resources/css/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/dir/resources/css/directory.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/dir/resources/css/tabs.css" />
+<style type="text/css">
+    .yui-skin-sam .yui-navset .yui-nav,
+    .yui-skin-sam .yui-navset .yui-navset-top .yui-nav,
+    .yui-skin-sam .yui-navset .yui-nav a,
+    .yui-skin-sam .yui-navset .yui-navset-top .yui-nav a {
+        background:#D8D8D8 url('/dir/resources/img/tabs_bg.png') repeat-x scroll 0 0;
+    }
+
+    .yui-skin-sam .yui-navset .yui-nav li.disabled {
+        opacity: .5;
+        display: none;
+    }
+
+    #searchResults {
+        height: 300px;
+        overflow: auto;
+    }
+
+    .directoryResultsHeader {
+        border-bottom: #ddd 1px solid;
+    }
+    .rightAligned {
+        text-align: right;
+    }
+    
+    .topBar {
+    background: url("/dir/resources/img/portal/logo_unc_main_png.png") no-repeat scroll left top transparent;
+    border: 0 none;
+    width:750px;;
+    height: 93px;
+    margin:5px 5px 5px 20px;
+    text-align:right;
+    }
+
+.uncTitle{
+    background: #56A0D3 url("/dir/resources/img/h2_bg_repeat.gif") repeat-x scroll left bottom;
+    border-top: 1px solid #9BBDDE;
+    color: #FFFFFF;
+    font-family: Georgia,'Times New Roman',Times,serif;
+    font-size: 150%;
+    font-weight: normal;
+    line-height: 1.0em;
+    margin: 0 0 8px;
+    padding: 5px 18px;
+    position: relative;
+    text-shadow: 0 0.05em 0.05em #4F7EAC;
+    }  
+    
+    body {
+    background-color: #F6F7F9;
+    }
+    
+    .outerBox {
+    background-color: #FFFFFF;
+    border-color: #56A0D3 #56A0D3 #56A0D3 #56A0D3;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 3px 3px 1px;
+    }
+    
+  #site-links{
+  float:right;
+  }
+  #site-links span {
+    border-right: 1px solid #6699CC;
+    margin-right: 10px;
+    padding-right: 10px;
+ }  
+    
+</style>
+<script type="text/javascript">
+    var exportContextPath = "";
+    var directoryUpdateURL = "https://itsapps.unc.edu/account/update";
+    var loggedIn = false;
+</script>
+<script type="text/javascript" src="/dir/resources/js/common.js"></script>
+<script type="text/javascript" src="/dir/resources/js/DirectoryDetails.js"></script>
+<script type="text/javascript" src="/dir/resources/js/DirectoryResults.js"></script>
+<script type="text/javascript" src="/dir/resources/js/DirectoryResultsThin.js"></script>
+<script type="text/javascript" src="/dir/resources/js/DirectorySearch.js"></script>
+<script type="text/javascript">
+    //var directorySearch = new DirectorySearch("", "/dir", "<portlet:resourceURL id='departmentList'/>", "<portlet:resourceURL id='details'/>", "<portlet:resourceURL id='search'/>");
+    //Jose
+    var directorySearch = new DirectorySearch("", "/dir", "/dir/dirSearch/departmentList", "/dir/dirSearch/details", "/dir/dirSearch/search");
+    var spid=""
+    var hostLoc=location.protocol+"//"+location.host;
+    function runOnLoad(){
+    	if (spid.length>0){
+    		directorySearch.getDetails(spid,true);
+    	}
+
+    }
+    </script>
+
+<div id="site-links"><span><a href="http://www.unc.edu/">Home</a></span><a href="http://connectcarolina.unc.edu/">Visit ConnectCarolina Portal</a></div>
+<div class="topBar"></div>
+
+<div class="outerBox">
+<h1 class="uncTitle">UNC Directory Search</h1>
+<table width="99%" cellspacing="8" cellpadding="0" id="ajaxTableContainerTable" class="ajaxTableContainerTable">
+<tbody>
+<tr>
+<td width="30%" valign="top" class="ajaxTableContainerColumn" widthid="1" columndropname="THIN_WIDTH" id="leftChannels">
+
+ <div id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011" class="ajaxChannel">
+  <div class="ajaxChannelMinWidth">
+   <div class="ajaxChannelContainer">
+    <div class="ajaxChannelTitlebar" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_titlebardiv">
+      <div class="ajaxChannelTitle" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_titlediv">Account</div>
+      <div class="ajaxChannelEvent" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_removediv">
+	   <a class="ajaxChannelRemove" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_removeevent" title="Remove">Remove</a>
+	  </div>
+      <div class="ajaxChannelEvent" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_maximizediv">
+       <a id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_maximizeevent" title="Show in full page" class="ajaxChannelMaximize">Maximize</a>
+	  </div>
+	  <div class="ajaxChannelEvent" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_minimizediv">
+	   <a id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_minimizeevent" class="ajaxChannelMinimize" title="Show titlebar only">Minimize</a>
+	  </div>
+	  <div class="ajaxChannelEvent" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_refreshdiv">
+	   <a class="ajaxChannelRefresh" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_refreshevent" title="Refresh">Refresh</a>
+	  </div>
+    </div>
+    <div class="ajaxChannelContent" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_contentdiv" style="opacity: 0.999999;">
+ 
+    <div style="display: block;" id="HomeTabContainer/DirectoryTabContainer/AccountPortletChannel_20973011_innercontent">
+     <div class="dottedLine">
+      	<input type="button" value="Sign in" class="button-continue" onclick="document.location.href='/dir/dirSearch/auth/view.htm'"> <span>to the UNC Directory Search</span>
+      <br><br>
+     </div>
+     <div>
+       <br>
+       Use your <a target="_blank" href="http://help.unc.edu/1959">Onyen</a> or <a target="_blank" href="http://help.unc.edu/CCM3_007536">UNC Guest ID</a> to update your personal information or to take advantage of all search features.
+       <br>
+       <br><b>Forgot Your Password?</b>
+       <br>Reset password for:
+       <br>
+       <a target="_blank" href="https://onyen.unc.edu/cgi-bin/unc_id/services">Onyen</a>
+       or <a target="_blank" href="https://itsapps.unc.edu/account/resetPassword">UNC Guest ID</a>
+     </div>
+<!-- 
+Roles:
+ -->
+
+     </div>
+  
+
+  
+    </div>
+   </div>
+  </div>
+ </div>
+
+ 
+
+ 
+ 
+</td>
+<td width="70%" valign="top" class="ajaxTableContainerColumn" widthid="0" columndropname="THICK_WIDTH" id="rightChannels">
+<div id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223" class="ajaxChannel">
+<div class="ajaxChannelMinWidth">
+ <div class="ajaxChannelContainer">
+  <div class="ajaxChannelTitlebar" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_titlebardiv">
+   <div class="ajaxChannelTitle" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_titlediv">UNC Directory</div>
+   <div class="ajaxChannelEvent" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_removediv">
+    <a class="ajaxChannelRemove" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_removeevent" title="Remove">Remove</a>
+   </div>
+   <div class="ajaxChannelEvent" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_maximizediv">
+    <a id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_maximizeevent" title="Show in full page" class="ajaxChannelMaximize">Maximize</a>
+   </div>
+   <div class="ajaxChannelEvent" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_minimizediv">
+    <a id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_minimizeevent" class="ajaxChannelMinimize" title="Show titlebar only">Minimize</a>
+   </div>
+   <div class="ajaxChannelEvent" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_refreshdiv">
+    <a class="ajaxChannelRefresh" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_refreshevent" title="Refresh">Refresh</a>
+   </div>
+  </div>
+  <div class="ajaxChannelContent" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_contentdiv" style="opacity: 0.999999;">
+   <div style="display: block;" id="HomeTabContainer/DirectoryTabContainer/DirectorySearchPortletChannel_30433223_innercontent">
+
+<div class="yui-skin-sam uncTabContainer">
+    <div id="dirsearchTabset" class="yui-navset">
+        <ul class="yui-nav">
+            <li class="selected"><a href="#basicSearch"><em>Search</em></a></li>
+            
+                
+                
+                    <li><a href="#advancedSearch"><em>Advanced</em></a></li>
+                
+            
+            <li class="disabled"><a href="#searchResults"><em>List</em></a></li>
+            <li class="disabled"><a href="#searchDetails"><em>Details</em></a></li>
+        </ul>
+        <div class="yui-content">
+            <!-- basic search form -->
+            
+                
+                
+                    <div id="basicSearch" class="yui-hidden">
+                        <form onSubmit="return false;" method="post" accept-charset="UTF-8" >
+                            Enter a name or Onyen to find people. <br />
+                            <table class="section">
+                                <tr>
+                                    <td>
+                                        <label for="searchString">Search</label>
+                                    </td>
+                                    <td>
+                                        <input id="dirSearchBasicInput" onKeyPress="return directorySearch.submitOnEnter(this,event)" maxlength="80" size="30" name="searchString" />
+                                        <input type="button" onClick="directorySearch.search(this.form)" value="Search" class="button-continue" /> <br />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        
+                            <div class="alert">Note: You are not logged in, search limited to 500 results.</div>
+                        
+                    </div>
+                    <div id="advancedSearch"><!-- advanced search -->
+                        <form onSubmit="return false;" method="post" accept-charset="UTF-8" >
+                            <table class="section">
+                                <tr>
+                                    <td colspan="2"><label for="affiliation">Search In</label><br />
+                                        <select size="1" name="affiliation">
+                                            <option value="">all</option>
+                                            <option value="student">students</option>
+                                            <option value="faculty">faculty</option>
+                                            <option value="staff">staff</option>
+                                        </select></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="firstname">First Name</label> <br />
+                                        <input maxlength="40" size="20" name="firstname" onKeyPress="return directorySearch.submitOnEnter(this,event)"/></td>
+
+                                    <td><label for="lastname">Last Name</label> <br />
+                                        <input maxlength="40" size="20" name="lastname" onKeyPress="return directorySearch.submitOnEnter(this,event)"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><label for="email">E-mail</label><br />
+                                        <input maxlength="40" size="20" name="email" onKeyPress="return directorySearch.submitOnEnter(this,event)"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><label for="departmentNumber">Department</label> <br />
+                                        <select size="8" name="departmentNumber" id="searchDepartmentList">
+                                            <option value="">Loading...</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="pid">PID</label><br />
+                                        <input maxlength="40" size="20" name="pid" onKeyPress="return directorySearch.submitOnEnter(this,event)"/></td>
+                                    <td><label for="onyen">Onyen</label><br />
+                                        <input maxlength="40" size="20" name="onyen" onKeyPress="return directorySearch.submitOnEnter(this,event)"/>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input type="reset" value="Reset" class="button-back" />
+                                        <input type="button" onClick="directorySearch.search(this.form)" value="Search" class="button-continue" /></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                
+            
+            <div id="searchResults">
+            </div>
+            <div id="searchDetails">
+            </div>
+        </div>
+    </div>
+</div>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </td>
+ </tr>
+</tbody>
+</table>
+
+<div class="portalFooterContainer">
+      <div class="footer-logo">
+        <a href="http://www.unc.edu" title="UNC-Chapel Hill">
+            <img src="/dir/resources/img/portal/footer-logo.gif" alt="The University of North Carolina at Chapel Hill">
+        </a>
+      </div>
+      <div class="footerHelpText">For assistance please call (919) 962-HELP or (919) 962-4357. Toll-free from US and Puerto Rico: (866) 962-4457.</div>
+      
+      
+	  <p>&copy; 2014 The University of North Carolina at Chapel Hill.  All rights reserved. </p>
+    
+  </div>
+</div>
+		</div>
+
+
+</body>
+</html>

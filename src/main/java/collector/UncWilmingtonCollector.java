@@ -7,12 +7,6 @@ import pi.Person;
 public class UncWilmingtonCollector extends Collector {
 
 	@Override
-	List<Person> collectInfo(List<Person> p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	Person collectInfo(Person p) {
 		// TODO Auto-generated method stub
 		return null;

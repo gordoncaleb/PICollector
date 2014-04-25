@@ -1,10 +1,18 @@
 package util;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 
 public class StringUtils {
 
@@ -65,6 +73,28 @@ public class StringUtils {
 		}
 
 		return allMatches;
+	}
+
+	public static Map<String, Object> jsonToMap(String json) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			map = mapper.readValue(json, new TypeReference<HashMap<String, Object>>() {
+			});
+		} catch (Exception e) {
+
+			try {
+				map.put("list", mapper.readValue(json, new TypeReference<ArrayList<Object>>() {
+
+				}));
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+		}
+
+		return map;
 	}
 
 	public static String getBaseURL(String url) {

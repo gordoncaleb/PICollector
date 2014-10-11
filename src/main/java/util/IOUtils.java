@@ -1,7 +1,10 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -49,6 +52,15 @@ public class IOUtils {
 	public static BufferedReader getResourceAsBufferedReader(String... path) throws Exception {
 		URL url = getResourceAsURL(path);
 		return new BufferedReader(new InputStreamReader(url.openStream()));
+	}
+
+	public static void writeToFile(String content, String fileName, boolean append) {
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(fileName), append))) {
+			bw.write(content);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static List<List<String>> getMatches(String regex, CharSequence seq) {

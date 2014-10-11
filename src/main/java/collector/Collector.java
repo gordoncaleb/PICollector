@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import persistence.PersonDAOImpl;
 import pi.Person;
 import pi.job.Organizations;
+import util.IOUtils;
 
 public abstract class Collector {
 
@@ -23,7 +24,7 @@ public abstract class Collector {
 
 		// collectOrganization(Organizations.EAST_CAROLINA, dao);
 		// collectOrganization(Organizations.NC_STATE, dao);
-		collectOrganization(Organizations.UNC_CHAPEL_HILL, dao);
+		// collectOrganization(Organizations.UNC_CHAPEL_HILL, dao);
 
 		List<Person> people = dao.hasEmail();
 
@@ -32,6 +33,8 @@ public abstract class Collector {
 		// }
 
 		System.out.println("There are " + people.size() + " people with email addresses in the database!");
+
+		Person.writeCsvFile("D:\\SWDev\\nc_uni_emails.csv", people);
 	}
 
 	public static void collectOrganization(String org, PersonDAOImpl dao) {

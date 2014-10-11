@@ -8,6 +8,7 @@ import pi.contact.EmailAddress;
 import pi.contact.Phone;
 import pi.job.Job;
 import pi.name.Name;
+import util.IOUtils;
 import util.StringUtils;
 
 public class Person {
@@ -173,10 +174,27 @@ public class Person {
 
 	}
 
+	public String csvLine() {
+
+		String email = emailAddresses.isEmpty() ? "" : emailAddresses.get(0).getFullAddress();
+		String phone = phones.isEmpty() ? "" : phones.get(0).getNumber();
+		String org = jobs.isEmpty() ? "" : jobs.get(0).getOrganization();
+		String salery = jobs.isEmpty() ? "" : jobs.get(0).getSalery() + "";
+
+		return this.getFirstName().getName() + "," + this.getMiddleName().getName() + "," + this.getLastName().getName() + "," + email + "," + phone
+				+ "," + org + "," + salery;
+	}
+
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", otherNames="
 				+ otherNames + ", emailAddresses=" + emailAddresses + ", phones=" + phones + ", jobs=" + jobs + "]";
+	}
+
+	public static void writeCsvFile(String fileName, List<Person> people) {
+		for (Person p : people) {
+			IOUtils.writeToFile(p.csvLine() + System.lineSeparator(), fileName, true);
+		}
 	}
 
 }

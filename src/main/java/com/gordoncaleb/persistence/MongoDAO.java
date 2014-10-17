@@ -15,7 +15,7 @@ public class MongoDAO {
 
 	static {
 		try {
-			piDataMongoTemplate = new MongoTemplate(new MongoClient("127.0.0.1"), "pidata");
+			piDataMongoTemplate = new MongoTemplate(new MongoClient("192.168.0.193"), "pidata");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

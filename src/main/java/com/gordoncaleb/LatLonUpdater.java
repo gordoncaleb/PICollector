@@ -17,14 +17,14 @@ import com.gordoncaleb.persistence.repository.PhysicalAddressRepository;
 
 @ComponentScan
 @EnableAutoConfiguration
-public class Application implements CommandLineRunner {
+public class LatLonUpdater implements CommandLineRunner {
 
 	@Autowired
 	private PhysicalAddressRepository addressRepo;
 
 	public static void main(String[] args) throws Exception {
 
-		SpringApplication app = new SpringApplication(Application.class);
+		SpringApplication app = new SpringApplication(LatLonUpdater.class);
 
 		app.run(args);
 
@@ -47,7 +47,7 @@ public class Application implements CommandLineRunner {
 		// new PageRequest(0, 3));
 
 		for (int api = 0; api < GeoCodeAPI.APIKEY.length; api++) {
-			
+
 			GeoCodeAPI.apiIndex = api;
 
 			for (int n = 0; n < 4; n++) {
@@ -63,21 +63,27 @@ public class Application implements CommandLineRunner {
 					System.out.println(addr);
 
 					try {
-						List<GeoCode> geoCodes = GeoCodeAPI
-								.queryForGeoCode(addr.generateMailingAddress());
 
-						addr.setGeoCode(geoCodes);
+						if (addr.getGeoCode() == null
+								|| addr.getGeoCode().isEmpty()) {
+							
+							List<GeoCode> geoCodes = GeoCodeAPI
+									.queryForGeoCode(addr
+											.generateMailingAddress());
 
-						System.out.println("Got geocode for "
-								+ addr.generateMailingAddress()
-								+ " \nGeocode:\n" + geoCodes);
+							addr.setGeoCode(geoCodes);
 
-						addressRepo.save(addr);
+							System.out.println("Got geocode for "
+									+ addr.generateMailingAddress()
+									+ " \nGeocode:\n" + geoCodes);
 
-						System.out.println("Got #" + i);
-						i++;
+							addressRepo.save(addr);
 
-						Thread.sleep(200);
+							System.out.println("Got #" + i);
+							i++;
+
+							Thread.sleep(200);
+						}
 
 					} catch (Exception e) {
 						e.printStackTrace();

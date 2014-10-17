@@ -21,6 +21,8 @@ public class PhysicalAddress {
 
 	private List<GeoCode> geoCode;
 
+	private List<String> schoolCodes;
+
 	public String getId() {
 		return id;
 	}
@@ -98,13 +100,25 @@ public class PhysicalAddress {
 				+ ", " + this.city + ", " + this.state;
 	}
 
+	public String generateStreetAddress() {
+		return getHouseNumber() + " " + getStreetName() + " " + getMode();
+	}
+
+	public List<String> getSchoolCodes() {
+		return schoolCodes;
+	}
+
+	public void setSchoolCodes(List<String> schoolCodes) {
+		this.schoolCodes = schoolCodes;
+	}
+
 	@Override
 	public String toString() {
 		return "PhysicalAddress [id=" + id + ", fipsCode=" + fipsCode
 				+ ", unformattedApn=" + unformattedApn + ", houseNumber="
 				+ houseNumber + ", streetName=" + streetName + ", mode=" + mode
 				+ ", city=" + city + ", state=" + state + ", geoCode="
-				+ geoCode + "]";
+				+ geoCode + ", schoolCodes=" + schoolCodes + "]";
 	}
 
 }

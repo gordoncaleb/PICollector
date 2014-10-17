@@ -15,6 +15,9 @@ public interface PhysicalAddressRepository extends
 	public List<PhysicalAddress> findByGeoCodeExists(boolean exists,
 			Pageable pageable);
 
-	@Query("{'geocode.0': {$exists: false}}")
+	@Query("{'geoCode.0': {$exists: false}}")
 	public Page<PhysicalAddress> findByEmptyGeoCode(Pageable pageable);
+	
+	@Query("{'schoolCodes.0': {$exists: false}}")
+	public Page<PhysicalAddress> findByEmptySchools(Pageable pageable);
 }

@@ -38,6 +38,8 @@ public class School {
 	@JsonProperty(value = "END_GRD")
 	private String endGrade;
 
+	private String type;
+
 	public String getId() {
 		return id;
 	}
@@ -126,11 +128,22 @@ public class School {
 		this.endGrade = endGrade;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Override
 	public String toString() {
-		return "School [id=" + id + ", name=" + name + ", schoolCode=" + schoolCode + ", address=" + address + ", city=" + city + ", phone=" + phone
-				+ ", website=" + website + ", notes=" + notes + ", gradeRange=" + gradeRange + ", startGrade=" + startGrade + ", endGrade="
-				+ endGrade + "]";
+		return "School [id=" + id + ", name=" + name + ", schoolCode="
+				+ schoolCode + ", address=" + address + ", city=" + city
+				+ ", phone=" + phone + ", website=" + website + ", notes="
+				+ notes + ", gradeRange=" + gradeRange + ", startGrade="
+				+ startGrade + ", endGrade=" + endGrade + ", type=" + type
+				+ "]";
 	}
 
 }

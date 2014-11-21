@@ -2,6 +2,7 @@ package com.gordoncaleb.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -104,5 +105,23 @@ public class StringUtils {
 		} else {
 			return url;
 		}
+	}
+
+	public static String csv(String... fields) {
+
+		StringBuilder sb = new StringBuilder();
+
+		Iterator<String> it = Arrays.asList(fields).iterator();
+
+		while (it.hasNext()) {
+
+			sb.append(it.next());
+
+			if (it.hasNext()) {
+				sb.append(",");
+			}
+		}
+
+		return sb.toString();
 	}
 }

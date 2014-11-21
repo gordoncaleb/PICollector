@@ -1,4 +1,5 @@
-package com.gordoncaleb.geocoding;
+package com.gordoncaleb.geocoding.google;
+
 
 public class Geometry {
 

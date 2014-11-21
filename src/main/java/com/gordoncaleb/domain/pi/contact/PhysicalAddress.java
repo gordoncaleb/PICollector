@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
-import com.gordoncaleb.geocoding.GeoCode;
+import com.gordoncaleb.geocoding.google.GoogleGeoCode;
+import com.gordoncaleb.util.StringUtils;
 
 public class PhysicalAddress {
 
@@ -18,8 +19,9 @@ public class PhysicalAddress {
 	private String mode;
 	private String city;
 	private String state;
+	private String zip;
 
-	private List<GeoCode> geoCode;
+	private List<GoogleGeoCode> geoCode;
 
 	private List<String> schoolCodes;
 
@@ -87,17 +89,24 @@ public class PhysicalAddress {
 		this.state = state;
 	}
 
-	public List<GeoCode> getGeoCode() {
+	public List<GoogleGeoCode> getGeoCode() {
 		return geoCode;
 	}
 
-	public void setGeoCode(List<GeoCode> geoCode) {
+	public void setGeoCode(List<GoogleGeoCode> geoCode) {
 		this.geoCode = geoCode;
 	}
 
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
 	public String generateMailingAddress() {
-		return this.houseNumber + " " + this.streetName + " " + this.mode
-				+ ", " + this.city + ", " + this.state;
+		return this.houseNumber + " " + this.streetName + " " + this.mode + ", " + this.city + ", " + this.state;
 	}
 
 	public String generateStreetAddress() {
@@ -112,13 +121,21 @@ public class PhysicalAddress {
 		this.schoolCodes = schoolCodes;
 	}
 
+	public PhysicalAddress generateAddressFromFormattedAddress() {
+
+		PhysicalAddress addr = new PhysicalAddress();
+		
+		//StringUtils.getMatches("", seq)
+
+		return addr;
+	}
+
 	@Override
 	public String toString() {
-		return "PhysicalAddress [id=" + id + ", fipsCode=" + fipsCode
-				+ ", unformattedApn=" + unformattedApn + ", houseNumber="
-				+ houseNumber + ", streetName=" + streetName + ", mode=" + mode
-				+ ", city=" + city + ", state=" + state + ", geoCode="
-				+ geoCode + ", schoolCodes=" + schoolCodes + "]";
+		return "PhysicalAddress [id=" + id + ", fipsCode=" + fipsCode + ", unformattedApn=" + unformattedApn + ", houseNumber=" + houseNumber
+				+ ", streetName=" + streetName + ", mode=" + mode + ", city=" + city + ", state=" + state + ", geoCode=" + geoCode + ", schoolCodes="
+				+ schoolCodes + "]";
 	}
+	
 
 }

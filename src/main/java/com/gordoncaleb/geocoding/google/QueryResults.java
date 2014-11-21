@@ -1,4 +1,4 @@
-package com.gordoncaleb.geocoding;
+package com.gordoncaleb.geocoding.google;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class QueryResults {
 	private String status;
 
 	@JsonProperty(value = "results")
-	private List<GeoCode> geoCodeResults;
+	private List<GoogleGeoCode> geoCodeResults;
 
 	public String getStatus() {
 		return status;
@@ -19,11 +19,11 @@ public class QueryResults {
 		this.status = status;
 	}
 
-	public List<GeoCode> getGeoCodeResults() {
+	public List<GoogleGeoCode> getGeoCodeResults() {
 		return geoCodeResults;
 	}
 
-	public void setGeoCodeResults(List<GeoCode> geoCodeResults) {
+	public void setGeoCodeResults(List<GoogleGeoCode> geoCodeResults) {
 		this.geoCodeResults = geoCodeResults;
 	}
 

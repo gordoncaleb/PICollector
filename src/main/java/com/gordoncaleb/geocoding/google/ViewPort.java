@@ -1,4 +1,4 @@
-package com.gordoncaleb.geocoding;
+package com.gordoncaleb.geocoding.google;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 

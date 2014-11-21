@@ -1,4 +1,4 @@
-package com.gordoncaleb.geocoding;
+package com.gordoncaleb.geocoding.google;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class GeoCodeAPI {
 
 	}
 
-	public static List<GeoCode> queryForGeoCode(String address)
+	public static List<GoogleGeoCode> queryForGeoCode(String address)
 			throws Exception {
 
 		String googleApiUrl = "https://maps.googleapis.com/maps/api/geocode/json?key="

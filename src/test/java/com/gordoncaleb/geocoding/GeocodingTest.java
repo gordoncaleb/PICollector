@@ -11,6 +11,9 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 
+import com.gordoncaleb.geocoding.google.GeoCodeAPI;
+import com.gordoncaleb.geocoding.google.Geometry;
+import com.gordoncaleb.geocoding.google.QueryResults;
 import com.gordoncaleb.util.JSON;
 
 public class GeocodingTest {

@@ -1,8 +1,8 @@
-package com.gordoncaleb.geocoding;
+package com.gordoncaleb.geocoding.google;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class GeoCode {
+public class GoogleGeoCode {
 
 	@JsonProperty(value = "geometry")
 	private Geometry geometry;
